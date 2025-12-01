@@ -51,9 +51,9 @@ with st.sidebar:
         **Đồ án Machine Learning**
         
         Thành viên nhóm:
-        1. Nguyễn Văn A (Model)
-        2. Trần Thị B (App)
-        3. Lê Văn C (Data)
+        1. Nguyễn Khánh Vân (Model)
+        2. Phan Văn Quốc Việt (App)
+        3. Đỗ Hải Yến (Data)
         
         GVHD: ThS. Nguyễn Văn X
         """
