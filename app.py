@@ -55,7 +55,7 @@ with st.sidebar:
         2. Phan Văn Quốc Việt (App)
         3. Đỗ Hải Yến (Data)
         
-        GVHD: ThS. Nguyễn Văn X
+        GVHD: TS. Võ Nguyễn Lê Duy
         """
     )
     st.divider()
