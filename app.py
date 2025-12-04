@@ -177,7 +177,7 @@ with col_viz:
                 sns.scatterplot(data=sample, x='age_years', y='ap_hi', hue='cardio', palette={0:'green', 1:'red'}, alpha=0.5, ax=ax3)
                 
                 # Vẽ điểm của User
-                ax3.scatter(age_years, ap_hi, color='blue', s=300, marker='*', label='BẠN (Input)')
+                ax3.scatter(age_years, ap_hi, color='blue', s=300, marker='*', label='BẠN')
                 plt.xlabel("Tuổi")
                 plt.ylabel("Huyết áp tâm thu")
                 plt.legend()
