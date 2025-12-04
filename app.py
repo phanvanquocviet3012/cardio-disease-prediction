@@ -118,15 +118,13 @@ if submit_btn:
         
         # Tạo dataframe input đúng chuẩn model yêu cầu
         input_data = pd.DataFrame([[
-            gender, height, weight, ap_hi, ap_lo, 
+            age_years, gender, height, weight, bmi_user, ap_hi, ap_lo, 
             cholesterol, gluc, 
             1 if smoke else 0, 
             1 if alco else 0, 
-            1 if active else 0, 
-            age_years, bmi_user
-        ]], columns=['gender', 'height', 'weight', 'ap_hi', 'ap_lo', 
-                     'cholesterol', 'gluc', 'smoke', 'alco', 'active', 
-                     'age_years', 'bmi'])
+            1 if active else 0
+        ]], columns=['age_years','gender', 'height', 'weight', 'bmi' ,'ap_hi', 'ap_lo', 
+                     'cholesterol', 'gluc', 'smoke', 'alco', 'active'])
         
         # Dự đoán
         prediction_result = model.predict(input_data)[0]
