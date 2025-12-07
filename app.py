@@ -124,7 +124,7 @@ with col_input:
     st.subheader("📝 Nhập chỉ số sức khỏe")
     with st.form("input_form"):
         # Thông tin cơ bản
-        age_input = st.number_input("Tuổi", 10, 100, 50)
+        age_input = st.number_input("Tuổi", 1, 100, 50)
         gender_input = st.selectbox("Giới tính", [1, 2], format_func=lambda x: "Nữ" if x==1 else "Nam")
         
         c1, c2 = st.columns(2)
