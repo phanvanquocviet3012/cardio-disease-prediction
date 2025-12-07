@@ -87,29 +87,30 @@ def give_advice(bmi, ap_hi, ap_lo, smoke, alco, active, prob):
 # 4. GIAO DIỆN: SIDEBAR
 # -------------------------------------------------------------------------
 with st.sidebar:
-    st.image("https://cdn-icons-png.flaticon.com/512/2966/2966486.png", width=80)
-    st.title("Cardio AI Project")
+    st.image("https://cdn-icons-png.flaticon.com/512/2966/2966486.png", width=100)
+    st.title("Cardio Prediction")
     st.info(
         """
-        **Nhóm thực hiện:**
-        1. Thành viên A (Model)
-        2. Thành viên B (App)
-        3. Thành viên C (Data)
+        **Đồ án Machine Learning**
+        
+        Thành viên nhóm:
+        1. Nguyễn Khánh Vân (Model)
+        2. Phan Văn Quốc Việt (App)
+        3. Đỗ Hải Yến (Data)
+        
+        GVHD: TS. Võ Nguyễn Lê Duy
         """
     )
     st.divider()
-    
-    # Kiểm tra trạng thái file hệ thống
-    if model: 
-        st.success("✅ Model: Đã kết nối")
-    else: 
-        st.error("❌ Model: Thiếu file .joblib")
+    if model is not None:
+        st.success("✅ Model: Đã tải thành công")
+    else:
+        st.error("❌ Model: Chưa tìm thấy file .joblib")
         
-    if df_data is not None: 
-        st.success("✅ Data: Đã kết nối")
-    else: 
-        st.warning("⚠️ Data: Thiếu file .csv (Không vẽ được biểu đồ)")
-
+    if df_data is not None:
+        st.success("✅ Data: Đã tải thành công")
+    else:
+        st.error("❌ Data: Chưa tìm thấy file .csv")
 # -------------------------------------------------------------------------
 # 5. GIAO DIỆN CHÍNH
 # -------------------------------------------------------------------------
