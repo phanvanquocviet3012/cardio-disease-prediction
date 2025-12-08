@@ -30,7 +30,7 @@ def load_model():
 def load_data():
     """Load dữ liệu gốc để vẽ biểu đồ so sánh"""
     try:
-        df = pd.read_csv('cardio_train.csv', sep=';')
+        df = pd.read_csv('cardio_train.csv', sep=',')
         # Feature Engineering cho dữ liệu hiển thị
         df['age_years'] = (df['age'] / 365.25).round(1)
         df['bmi'] = df['weight'] / ((df['height'] / 100) ** 2)
