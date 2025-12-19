@@ -217,9 +217,6 @@ with col_output:
         ]], columns=['age_years','gender', 'height', 'weight', 'bmi' ,
                      'ap_hi', 'ap_lo', 
                      'cholesterol', 'gluc', 'smoke', 'alco', 'active'])
-
-        st.write("Cột model cần:", model.get_booster().feature_names)
-        st.write("Cột bạn đang có:", input_data.columns.tolist())
         
         # 2. Dự đoán bằng AI
         prediction = model.predict(input_data)[0]
