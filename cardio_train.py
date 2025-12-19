@@ -6,7 +6,8 @@ from sklearn.metrics import accuracy_score, roc_auc_score, classification_report
 import joblib
 
 
-df = pd.read_csv('cardio_train.csv', sep=';') 
+# The dataset is comma-separated. Use the correct separator so columns like 'age' are parsed.
+df = pd.read_csv('cardio_train.csv', sep=',')
 
 df['age_years'] = (df['age'] / 365.25).round().astype(int)
 
