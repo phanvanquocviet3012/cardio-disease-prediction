@@ -111,7 +111,7 @@ def give_advice(bmi, ap_hi, ap_lo, pulse_pressure, smoke, alco, active, prob):
     
     # Đánh giá BMI & Huyết áp
     if bmi >= 23 and ap_hi >= 130:
-        advice_list.append("💡 **Chiến lược ưu tiên:** Với chỉ số hiện tại, việc **giảm 3-5kg cân nặng** sẽ có tác dụng hạ huyết áp hiệu quả hơn bất kỳ loại thực phẩm chức năng nào.")
+        advice_list.append("💡 **Chỉ số BMI & Huyết áp cao vượt ngưỡng:** Với chỉ số hiện tại, việc **giảm 3-5kg cân nặng** sẽ có tác dụng hạ huyết áp hiệu quả hơn bất kỳ loại thực phẩm chức năng nào.")
 
     # 4. Lời khuyên tổng quan từ AI
     if prob > 0.7:
