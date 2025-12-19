@@ -294,9 +294,9 @@ with col_output:
         with tab3:
             st.caption("Mức độ ảnh hưởng của các yếu tố.")
             fig3, ax3 = plt.subplots(figsize=(8, 5))
-            cols = ['age_years','gender', 'height', 'weight', 'bmi' ,
+            cols = ['age_years', 'bmi' ,
                      'ap_hi', 'ap_lo', 
-                     'cholesterol', 'gluc', 'smoke', 'alco', 'active',
+                     'cholesterol', 'gluc',
                      'cardio']
             sns.heatmap(df_data[cols].corr(), annot=True, cmap='coolwarm', fmt=".2f", ax=ax3)
             st.pyplot(fig3)
