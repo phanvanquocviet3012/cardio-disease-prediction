@@ -45,41 +45,86 @@ df_data = load_data()
 # -------------------------------------------------------------------------
 # 3. LOGIC BÁC SĨ ẢO (Rule-based System)
 # -------------------------------------------------------------------------
-def give_advice(bmi, ap_hi, ap_lo, smoke, alco, active, prob):
+def give_advice(bmi, ap_hi, ap_lo, pulse_pressure, smoke, alco, active, prob):
     """
     Hàm trả về danh sách lời khuyên dựa trên chỉ số sức khỏe.
     """
     advice_list = []
     
+    advice_list.append("#### 🩺 Đánh giá chỉ số sức khỏe của bạn:")
     # 1. Đánh giá BMI
     if bmi < 18.5:
-        advice_list.append("⚠️ **Cân nặng:** Bạn hơi gầy. Cần bổ sung dinh dưỡng.")
+        advice_list.append("⚠️ **Cân nặng:** Bạn hơi gầy. Cần bổ sung dinh dưỡng, tập gym (kháng lực) để tăng cơ, tránh suy nhược cơ thể.")
     elif 18.5 <= bmi < 24.9:
-        advice_list.append("✅ **Cân nặng:** Tuyệt vời! BMI ở mức chuẩn.")
-    elif 25 <= bmi < 29.9:
-        advice_list.append("⚠️ **Cân nặng:** Bạn đang **Thừa cân**. Nên giảm tinh bột, tăng rau xanh.")
+        advice_list.append("✅ **Cân nặng:** Tuyệt vời! BMI ở mức chuẩn.Hãy duy trì chế độ ăn và tập luyện hiện tại.")
+    elif 25 <= bmi < 25.0:
+        advice_list.append("⚠️ **Cân nặng:** Bạn đang **Thừa cân**. Bạn cần cắt giảm tinh bột hoặc đường, tăng cường vận động để tránh chuyển sang béo phì.")
     else:
-        advice_list.append("🚨 **Cân nặng:** Bạn đang **Béo phì**. Nguy cơ tim mạch cao. Cần giảm cân ngay.")
+        advice_list.append("🚨 **Cân nặng:** Bạn đang **Béo phì**. Nguy cơ tim mạch cao. Hãy giảm calo đầu vào, tập cardio ít nhất 30 phút/ngày. Kiểm tra mỡ máu.")
 
     # 2. Đánh giá Huyết áp
     if ap_hi >= 140 or ap_lo >= 90:
-        advice_list.append("🚨 **Huyết áp:** Bạn bị **Cao huyết áp**. Hãy hạn chế ăn mặn và đi khám bác sĩ.")
+        advice_list.append("🚨 **Huyết áp:** Bạn bị **Cao huyết áp**. **Đi khám bác sĩ.** Có thể cần dùng thuốc và theo dõi sát sao hàng ngày.")
     elif ap_hi >= 130 or ap_lo >= 80:
-        advice_list.append("⚠️ **Huyết áp:** Huyết áp hơi cao (Tiền tăng huyết áp). Cần theo dõi thường xuyên.")
+        advice_list.append("⚠️ **Huyết áp:** Huyết áp hơi cao (Tiền cao huyết áp). Cần theo dõi thường xuyên. Thay đổi lối sống triệt để: bỏ thuốc, giảm rượu, giảm stress, tập thể dục đều đặn.")
+    elif ap_hi >= 120:
+        advice_list.append("⚠️ **Huyết áp:** Huyết áp ở mức cao bình thường. Cần chú ý chế độ ăn ít muối (dưới 5g/ngày), tập thể dục thường xuyên, theo dõi huyết áp định kỳ mỗi tháng.")
     else:
-        advice_list.append("✅ **Huyết áp:** Huyết áp ổn định.")
+        advice_list.append("✅ **Huyết áp:** Huyết áp ổn định. Hãy tiếp tục duy trì lối sống lành mạnh.")
 
     # 3. Đánh giá Lối sống
+    advice_list.append("#### 🏃 Tình trạng lối sống & Nguy cơ")
+    
+    # Trường hợp: Lối sống tĩnh tại + Chất kích thích
+    if active == 0 and (smoke == 1 or alco == 1):
+        advice_list.append("🚨 **Nguy cơ cộng hưởng:** Việc thiếu vận động kết hợp với chất kích thích tạo ra 'gọng kìm' phá hủy hệ mạch máu. Hóa chất từ thuốc lá/rượu bia tích tụ nhanh hơn khi quá trình trao đổi chất qua vận động bị đình trệ.")
+    
+    # Trường hợp: BMI cao + Không vận động
+    if bmi >= 25 and active == 0:
+        advice_list.append("⚠️ **Cảnh báo chuyển hóa:** Bạn đang có chỉ số BMI cao kèm theo lối sống ít vận động. Đây là con đường ngắn nhất dẫn đến tình trạng kháng Insulin và xơ vữa động mạch.")
+
+    # --- CHI TIẾT TỪNG YẾU TỐ ---
+    
+    # Đánh giá Hút thuốc
     if smoke == 1:
-        advice_list.append("🚭 **Hút thuốc:** Ngừng hút thuốc ngay để giảm 50% nguy cơ đột quỵ.")
+        advice_list.append("- **🚬 Thuốc lá:** Nicotine gây co mạch tức thì, làm tăng áp lực lên thành động mạch ngay cả khi bạn đang nghỉ ngơi. Việc bỏ thuốc có thể giúp giảm nguy cơ đột quỵ xuống 50% chỉ sau 1 năm.")
+    else:
+        advice_list.append("- **🚬 Thuốc lá:** ✅ Tốt. Bạn không hút thuốc giúp bảo vệ lớp nội mạc mạch máu khỏi các gốc tự do.")
+
+    # Đánh giá Rượu bia
     if alco == 1:
-        advice_list.append("🍷 **Rượu bia:** Hạn chế rượu bia để bảo vệ gan và tim.")
-    if active == 0:
-        advice_list.append("🏃 **Vận động:** Bạn ít vận động. Hãy đi bộ ít nhất 30 phút/ngày.")
+        advice_list.append("- **🍷 Rượu bia:** Sử dụng rượu bia thường xuyên làm tăng nồng độ Triglyceride trong máu và tăng huyết áp tâm trương (số dưới). Hãy cố gắng duy trì ít nhất 3-4 ngày 'khô ráo' (không cồn) mỗi tuần.")
+    
+    # Đánh giá Vận động
+    if active == 1:
+        advice_list.append("- **🏋️ Vận động:** ✅ Tuyệt vời. Thể thao thường xuyên giúp tăng cường HDL-Cholesterol (cholesterol tốt) và cải thiện độ đàn hồi của mạch máu.")
+    else:
+        advice_list.append("- **🚶 Vận động:** ⚠️ Thiếu vận động. Tim là một khối cơ, nếu không được 'tập luyện' qua vận động, khả năng bơm máu sẽ suy giảm, dẫn đến nhịp tim nghỉ ngơi cao và mau mệt.")
+
+    # --- 3. PHÂN TÍCH CHỈ SỐ Y KHOA DỰA TRÊN LỐI SỐNG ---
+    advice_list.append("#### 📊 Tương quan chỉ số")
+    
+    # Đánh giá Hiệu áp (Pulse Pressure) - Rất quan trọng nhưng thường bị bỏ qua
+    if pulse_pressure > 60:
+        advice_list.append(f"🔍 **Hiệu áp rộng ({pulse_pressure} mmHg):** Đây là dấu hiệu cho thấy động mạch của bạn đang bị cứng (stiffening). Điều này thường gặp ở người hút thuốc lâu năm hoặc cao huyết áp không kiểm soát.")
+    
+    # Đánh giá BMI & Huyết áp
+    if bmi >= 23 and ap_hi >= 130:
+        advice_list.append("💡 **Chiến lược ưu tiên:** Với chỉ số hiện tại, việc **giảm 3-5kg cân nặng** sẽ có tác dụng hạ huyết áp hiệu quả hơn bất kỳ loại thực phẩm chức năng nào.")
 
     # 4. Lời khuyên tổng quan từ AI
     if prob > 0.7:
-        advice_list.append("🏥 **CẢNH BÁO KHẨN:** AI dự báo nguy cơ > 70%. Bạn nên đi tầm soát tim mạch tại bệnh viện sớm.")
+        advice_list.append("""
+        ### 🚨 CẢNH BÁO NGUY CƠ CAO (>70%)
+        **Hệ thống AI nhận diện bạn đang thuộc nhóm nguy cơ tim mạch rất cao. Hãy thực hiện các bước sau ngay lập tức:**
+        
+        1. **Thăm khám chuyên khoa:** Bạn cần liên hệ với bác sĩ tim mạch để thực hiện các xét nghiệm chuyên sâu như: Điện tâm đồ (ECG), Siêu âm tim, hoặc xét nghiệm chỉ số mỡ máu (Lipid Panel).
+        2. **Kiểm soát huyết áp khẩn cấp:** Nếu huyết áp hiện tại > 160/100 mmHg, hãy nghỉ ngơi và liên hệ hỗ trợ y tế. Tránh vận động mạnh đột ngột lúc này.
+        3. **Ngưng hoàn toàn các tác nhân gây hại:** Tuyệt đối không hút thuốc lá và uống rượu bia, vì ở ngưỡng 70%, một kích thích nhỏ cũng có thể dẫn đến biến cố cấp tính (nhồi máu cơ tim/đột quỵ).
+        4. **Tầm soát triệu chứng đi kèm:** Kiểm tra xem bạn có bị đau thắt ngực, khó thở khi nằm, hay hoa mắt chóng mặt thường xuyên không?
+        
+        *Lưu ý: Kết quả này từ AI dựa trên số liệu thống kê, không thay thế hoàn toàn chẩn đoán của bác sĩ nhưng là tín hiệu báo động đỏ cho sức khỏe của bạn.*
+        """)
     
     return advice_list
 
@@ -192,6 +237,7 @@ with col_output:
         st.subheader("💡 Lời khuyên cá nhân hóa")
         with st.expander("Xem chi tiết lời khuyên từ chuyên gia", expanded=True):
             advice = give_advice(user_bmi, ap_hi_input, ap_lo_input, 
+                                 user_pulse_pressure,
                                  1 if smoke_input else 0, 
                                  1 if alco_input else 0, 
                                  1 if active_input else 0, 
