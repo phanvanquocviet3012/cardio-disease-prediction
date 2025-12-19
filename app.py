@@ -154,19 +154,21 @@ with col_input:
 with col_output:
     # Biến lưu trạng thái để vẽ biểu đồ
     user_bmi = 0
+    user_pulse_pressure = 0
     
     if submit_btn and model:
         # 1. Xử lý dữ liệu đầu vào
         user_bmi = weight_input / ((height_input/100)**2)
-        
+        user_pulse_pressure = ap_hi_input - ap_lo_input
+
         # Tạo DataFrame đúng chuẩn input của model
         input_data = pd.DataFrame([[
-            age_input, gender_input, height_input, weight_input, user_bmi, ap_hi_input, ap_lo_input, 
+            age_input, gender_input, height_input, weight_input, user_bmi, ap_hi_input, ap_lo_input, user_pulse_pressure,
             cholesterol_input, gluc_input, 
             1 if smoke_input else 0, 
             1 if alco_input else 0, 
             1 if active_input else 0
-        ]], columns=['age_years','gender', 'height', 'weight', 'bmi' ,'ap_hi', 'ap_lo', 
+        ]], columns=['age_years','gender', 'height', 'weight', 'bmi' ,'ap_hi', 'ap_lo', 'pulse_pressure',
                      'cholesterol', 'gluc', 'smoke', 'alco', 'active'])
         
         # 2. Dự đoán bằng AI

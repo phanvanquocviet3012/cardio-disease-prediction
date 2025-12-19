@@ -21,7 +21,9 @@ df_clean = df[
 
 df_clean['bmi'] = df_clean['weight'] / ((df_clean['height'] / 100) ** 2)
 
-features = ['age_years', 'gender', 'height', 'weight', 'bmi', 'ap_hi', 'ap_lo', 'cholesterol', 'gluc', 'smoke', 'alco', 'active']
+df_clean['pulse_pressure'] = df_clean['ap_hi'] - df_clean['ap_lo']
+
+features = ['age_years', 'gender', 'height', 'weight', 'bmi', 'ap_hi', 'ap_lo','pulse_pressure', 'cholesterol', 'gluc', 'smoke', 'alco', 'active']
 target = 'cardio'
 
 X = df_clean[features]
@@ -36,16 +38,17 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 #  0: Không ép buộc (để model tự học)
 
 # Thứ tự features: 
-# ['age_years', 'gender', 'height', 'weight', 'bmi', 'ap_hi', 'ap_lo', 'cholesterol', 'gluc', 'smoke', 'alco', 'active']
+# ['age_years', 'gender', 'height', 'weight', 'bmi', 'ap_hi', 'ap_lo','pulse_pressure', 'cholesterol', 'gluc', 'smoke', 'alco', 'active']
 
 constraints = (
     1,  # age_years: Càng già càng dễ bệnh
     0,  # gender: Không ép (tùy dữ liệu)
     0,  # height: Không ép
     1,  # weight: Càng nặng càng dễ bệnh
-    1,  # bmi: BMI cao -> bệnh
+    0,  # bmi: Dữ liệu hình J/U (Không ép)
     1,  # ap_hi: Huyết áp cao -> bệnh
     1,  # ap_lo: Huyết áp cao -> bệnh
+    0,  # pulse_pressure: Dữ liệu hình J/U (Không ép)
     1,  # cholesterol: Cao -> bệnh
     1,  # gluc: Đường huyết cao -> bệnh
     1,  # smoke: Hút thuốc (0->1) -> Tăng nguy cơ (QUAN TRỌNG)
@@ -76,6 +79,8 @@ print("-" * 30)
 print("Classification Report:")
 print(classification_report(y_test, y_pred))
 
+
 # Lưu model
 joblib.dump(model, 'cardio_model.joblib')
 print("Xong")
+
