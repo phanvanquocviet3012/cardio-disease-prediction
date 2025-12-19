@@ -101,8 +101,9 @@ def give_advice(bmi, ap_hi, ap_lo, pulse_pressure, smoke, alco, active, prob):
     else:
         advice_list.append("- **🚶 Vận động:** ⚠️ Thiếu vận động. Tim là một khối cơ, nếu không được 'tập luyện' qua vận động, khả năng bơm máu sẽ suy giảm, dẫn đến nhịp tim nghỉ ngơi cao và mau mệt.")
 
-    # --- 3. PHÂN TÍCH CHỈ SỐ Y KHOA DỰA TRÊN LỐI SỐNG ---
-    advice_list.append("#### 📊 Tương quan chỉ số")
+    # ---  PHÂN TÍCH CHỈ SỐ Y KHOA DỰA TRÊN LỐI SỐNG ---
+    if (pulse_pressure > 60) or (bmi >= 23 and ap_hi >= 130):
+        advice_list.append("#### 📊 Tương quan chỉ số")
     
     # Đánh giá Hiệu áp (Pulse Pressure) - Rất quan trọng nhưng thường bị bỏ qua
     if pulse_pressure > 60:
