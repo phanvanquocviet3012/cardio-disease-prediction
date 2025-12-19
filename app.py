@@ -209,13 +209,13 @@ with col_output:
         # Tạo DataFrame đúng chuẩn input của model
         input_data = pd.DataFrame([[
             age_input, gender_input, height_input, weight_input, 
-            user_bmi, ap_hi_input, ap_lo_input, user_pulse_pressure,
+            user_bmi, ap_hi_input, ap_lo_input,
             cholesterol_input, gluc_input, 
             1 if smoke_input else 0, 
             1 if alco_input else 0, 
             1 if active_input else 0
         ]], columns=['age_years','gender', 'height', 'weight', 'bmi' ,
-                     'ap_hi', 'ap_lo', 'pulse_pressure',
+                     'ap_hi', 'ap_lo', 
                      'cholesterol', 'gluc', 'smoke', 'alco', 'active'])
 
         st.write("Cột model cần:", model.get_booster().feature_names)
