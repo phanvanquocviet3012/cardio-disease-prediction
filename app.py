@@ -94,6 +94,8 @@ def give_advice(bmi, ap_hi, ap_lo, pulse_pressure, smoke, alco, active, prob):
     # Đánh giá Rượu bia
     if alco == 1:
         advice_list.append("- **🍷 Rượu bia:** Sử dụng rượu bia thường xuyên làm tăng nồng độ Triglyceride trong máu và tăng huyết áp tâm trương (số dưới). Hãy cố gắng duy trì ít nhất 3-4 ngày 'khô ráo' (không cồn) mỗi tuần.")
+    else:
+        advice_list.append("- **🍷 Rượu bia:** ✅ Tốt. Bạn không uống rượu bia giúp ổn định nồng độ Triglyceride trong máu và ổn định huyết áp tâm trương nhằm bảo vệ sức khỏe tim mạch.")
     
     # Đánh giá Vận động
     if active == 1:
