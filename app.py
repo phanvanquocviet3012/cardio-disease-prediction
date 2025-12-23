@@ -188,10 +188,11 @@ with col_input:
         st.markdown("**Chỉ số y khoa:**")
         ap_hi_input = st.number_input("Huyết áp tâm thu (Trên)", 60, 240, 120)
         ap_lo_input = st.number_input("Huyết áp tâm trương (Dưới)", 40, 160, 80)
-
+        check_ap = True
         if ap_lo_input >= ap_hi_input:
             st.error("❌ Huyết áp tâm trương phải nhỏ hơn huyết áp tâm thu.")
-        
+            check_ap = False
+
         cholesterol_input = st.selectbox("Cholesterol", [1, 2, 3], format_func=lambda x: ["Bình thường", "Cao", "Rất cao"][x-1])
         gluc_input = st.selectbox("Glucose", [1, 2, 3], format_func=lambda x: ["Bình thường", "Cao", "Rất cao"][x-1])
         
@@ -203,7 +204,9 @@ with col_input:
         with check3: active_input = st.checkbox("Thể thao")
         
         st.markdown("---")
-        submit_btn = st.form_submit_button("🔍 PHÂN TÍCH NGAY", type="primary")
+        if not check_ap:
+            st.warning("Vui lòng điều chỉnh lại chỉ số huyết áp để tiếp tục phân tích.")
+            submit_btn = st.form_submit_button("🔍 PHÂN TÍCH NGAY", type="primary")
 
 # --- CỘT PHẢI: XỬ LÝ & HIỂN THỊ ---
 with col_output:
