@@ -69,6 +69,10 @@ def give_advice(bmi, ap_hi, ap_lo, pulse_pressure, smoke, alco, active, prob):
         advice_list.append("- ⚠️ **Huyết áp:** Huyết áp hơi cao (Tiền cao huyết áp). Cần theo dõi thường xuyên. Thay đổi lối sống triệt để: bỏ thuốc, giảm rượu, giảm stress, tập thể dục đều đặn.")
     elif ap_hi >= 120:
         advice_list.append("- ⚠️ **Huyết áp:** Huyết áp ở mức cao bình thường. Cần chú ý chế độ ăn ít muối (dưới 5g/ngày), tập thể dục thường xuyên, theo dõi huyết áp định kỳ mỗi tháng.")
+    elif ap_hi < 90 or ap_lo < 60:
+        advice_list.append("- ⚠️ **Huyết áp:** Bạn bị **Huyết áp thấp**. Hãy bổ sung đủ nước, ăn đủ bữa, tránh đứng dậy đột ngột để ngăn ngừa hoa mắt chóng mặt.")
+    elif pulse_pressure <= 20:
+        advice_list.append("- ⚠️ **Huyết áp:** Hiệu áp (Pulse Pressure) thấp. Đây có thể là dấu hiệu của suy tim hoặc hẹp van động mạch chủ. Hãy đi khám bác sĩ để được chẩn đoán chính xác.")
     else:
         advice_list.append("- ✅ **Huyết áp:** Huyết áp ổn định. Hãy tiếp tục duy trì lối sống lành mạnh.")
 
