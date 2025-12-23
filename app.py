@@ -206,7 +206,7 @@ with col_input:
         st.markdown("---")
         if not check_ap:
             st.warning("Vui lòng điều chỉnh lại chỉ số huyết áp để tiếp tục phân tích.")
-        submit_btn = st.form_submit_button("🔍 PHÂN TÍCH NGAY", type="primary")
+        submit_btn = st.form_submit_button("🔍 PHÂN TÍCH NGAY", type="primary", disabled=check_ap)
 
 # --- CỘT PHẢI: XỬ LÝ & HIỂN THỊ ---
 with col_output:
