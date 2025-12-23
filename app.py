@@ -187,7 +187,7 @@ with col_input:
         # Chỉ số y khoa
         st.markdown("**Chỉ số y khoa:**")
         ap_hi_input = st.number_input("Huyết áp tâm thu (Trên)", 60, 240, 120)
-        ap_lo_input = st.number_input("Huyết áp tâm trương (Dưới)", 40, 160, 80)
+        ap_lo_input = st.number_input("Huyết áp tâm trương (Dưới)", 40, ap_hi_input, 80)
         
         cholesterol_input = st.selectbox("Cholesterol", [1, 2, 3], format_func=lambda x: ["Bình thường", "Cao", "Rất cao"][x-1])
         gluc_input = st.selectbox("Glucose", [1, 2, 3], format_func=lambda x: ["Bình thường", "Cao", "Rất cao"][x-1])
