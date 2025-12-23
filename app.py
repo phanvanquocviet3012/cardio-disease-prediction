@@ -238,9 +238,9 @@ with col_output:
         st.progress(int(probability*100))
         
         if prediction == 1:
-            st.error(f"⚠️ **CẢNH BÁO:** Bạn CÓ nguy cơ mắc bệnh tim mạch.")
+            st.error(f"⚠️ **CẢNH BÁO:** Bạn CÓ nguy cơ mắc bệnh tim mạch. Hãy xem phần lời khuyên bên dưới để biết cách cải thiện sức khỏe tim mạch của bạn.")
         else:
-            st.success(f"✅ **AN TOÀN:** Bạn ít có nguy cơ mắc bệnh.")
+            st.success(f"✅ **AN TOÀN:** Bạn ít có nguy cơ mắc bệnh tim, tuy nhiên có thể còn một vài vấn đề khác bạn cần cải thiện để có thể tối thiểu hóa tỉ lệ mắc bệnh tim.")
             
         # 4. Hiển thị Lời khuyên (Bác sĩ ảo)
         st.subheader("💡 Lời khuyên cá nhân hóa")
