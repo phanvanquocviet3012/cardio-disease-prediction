@@ -6,6 +6,8 @@ Dự án sử dụng Machine Learning để dự đoán nguy cơ mắc bệnh ti
 
 Mục tiêu của dự án là xây dựng một mô hình phân loại (Classification) có độ chính xác cao để hỗ trợ các bác sĩ trong việc chẩn đoán sớm bệnh tim.
 
+* [Cardio Prediction](https://cardiodisease-prediction.streamlit.app/)
+
 ## 📊 Dữ liệu
 
 DATASET: [Cardiovascular Disease dataset](https://www.kaggle.com/datasets/sulianova/cardiovascular-disease-dataset/data)
