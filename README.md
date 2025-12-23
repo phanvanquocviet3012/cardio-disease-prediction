@@ -8,6 +8,8 @@ Mục tiêu của dự án là xây dựng một mô hình phân loại (Classif
 
 ## 📊 Dữ liệu
 
+DATASET: [Cardiovascular Disease dataset](https://www.kaggle.com/datasets/sulianova/cardiovascular-disease-dataset/data)
+
 Dữ liệu được sử dụng trong dự án bao gồm các đặc trưng chính như:
 
 * **Age**: Tuổi.
@@ -65,7 +67,6 @@ jupyter notebook notebooks/main_analysis.ipynb
 * **F1-Score:** 0.82.
 
 ## 👤 Tác giả
-
-* **Phan Văn Quốc Việt** - [GitHub của bạn](https://github.com/phanvanquocviet3012)
+* **Phan Văn Quốc Việt**
 * **Nguyễn Khánh Vân**
 * **Đỗ Hải Yến**
