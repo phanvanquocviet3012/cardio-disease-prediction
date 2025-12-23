@@ -305,7 +305,7 @@ with col_output:
         # Tab 3: Heatmap
         with tab3:
             st.caption("Mức độ ảnh hưởng của các yếu tố.")
-            fig3, ax3 = plt.subplots(figsize=(8, 5))
+            fig3, ax3 = plt.subplots(figsize=(8, 7))
             cols = ['age_years', 'ap_hi', 'ap_lo', 'bmi', 'cholesterol', 'gluc', 'cardio']
             sns.heatmap(df_data[cols].corr(), annot=True, cmap='coolwarm', fmt=".2f", ax=ax3)
             st.pyplot(fig3)
