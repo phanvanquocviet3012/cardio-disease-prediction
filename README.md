@@ -58,7 +58,7 @@ pip install -r requirements.txt
 Mở file Notebook để xem chi tiết quá trình huấn luyện:
 
 ```bash
-jupyter notebook notebooks/main_analysis.ipynb
+streamlit run app.py
 
 ```
 
