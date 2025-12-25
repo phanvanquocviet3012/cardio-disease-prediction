@@ -6,8 +6,7 @@ from sklearn.metrics import accuracy_score, roc_auc_score, classification_report
 import joblib
 
 
-# The dataset is comma-separated. Use the correct separator so columns like 'age' are parsed.
-df = pd.read_csv('cardio_train.csv', sep=',')
+df = pd.read_csv('cardio_train.csv', sep=';') 
 
 df['age_years'] = (df['age'] / 365.25).round().astype(int)
 
@@ -52,19 +51,22 @@ constraints = (
     0,  # pulse_pressure: Dữ liệu hình J/U (Không ép)
     1,  # cholesterol: Cao -> bệnh
     1,  # gluc: Đường huyết cao -> bệnh
-    1,  # smoke: Hút thuốc (0->1) -> Tăng nguy cơ (QUAN TRỌNG)
+    1,  # smoke: Hút thuốc (0->1) -> Tăng nguy cơ 
     1,  # alco: Rượu bia (0->1) -> Tăng nguy cơ
-    -1  # active: Vận động (0->1) -> Giảm nguy cơ (QUAN TRỌNG)
+    -1  # active: Vận động (0->1) -> Giảm nguy cơ 
 )
 
 # train model
 model = xgb.XGBClassifier(
     n_estimators=200,       # Số lượng cây (càng nhiều càng kỹ nhưng lâu)
     learning_rate=0.05,     # Tốc độ học
-    max_depth=6,            # Độ sâu của cây
+    max_depth=5,            # Độ sâu của cây
     monotone_constraints=constraints, # đặt ràng buộc
     use_label_encoder=False,
-    eval_metric='logloss'
+    eval_metric='logloss',
+    reg_lambda= 10,
+    gamma= 0.1
+
 )
 
 model.fit(X_train, y_train)
@@ -84,4 +86,3 @@ print(classification_report(y_test, y_pred))
 # Lưu model
 joblib.dump(model, 'cardio_model.joblib')
 print("Xong")
-
